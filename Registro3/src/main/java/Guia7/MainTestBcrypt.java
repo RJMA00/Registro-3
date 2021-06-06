@@ -5,6 +5,7 @@
  */
 package Guia7;
 
+import java.util.Scanner;
 import org.mindrot.jbcrypt.BCrypt;
 
 /**
@@ -13,10 +14,11 @@ import org.mindrot.jbcrypt.BCrypt;
  */
 public class MainTestBcrypt {
 
+   
     /**
      * @param args the command line arguments
      */
-    public static void main(String[] args) {
+    public static void main(String[] args, String password_check) {
         // TODO code application logic here
 String nombre;
 String apellidos;
@@ -35,7 +37,7 @@ System.out.println("Ingrese el apellido del usuario :");
 apellidos = teclado.nextLine();
 
 System.out.println("Ingrese la edad del usuario :");
-edad = teclado.nextLine();
+edad = Float.parseFloat(teclado.nextLine());
 
 System.out.println("Ingrese el departamento :");
 departamento = teclado.nextLine();
@@ -71,16 +73,14 @@ String password_chek;
 System.out.println("Ingrese la contraseña para verificar: ");
 password_check = teclado.nextLine();
 
-if (BCrypt.checkpv(password_check, registro.getpassword())){
-System.out.println("La contraseña es correcta");
+if (BCrypt.checkpw(password_check, registro.getpassword())){
+    System.out.println("La contraseña es correcta");
 }else{
-System.out.println("La contraseña es incorrecta");
+    System.out.println("La contraseña es incorrecta");
+}
+}
+public static String encriptar(String pass){
+    return BCrypt.hashpw(pass,BCrypt.gensalt());
+}
 }
 
-  public static String encriptar(String pass){
-      return BCrypt.hashpw(pass,BCrypt.gensalt());
-  }
-    
-       
-            
-        }
